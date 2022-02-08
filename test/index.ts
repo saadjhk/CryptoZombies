@@ -1,19 +1,16 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-// describe("Greeter", function () {
-//   it("Should return the new greeting once it's changed", async function () {
-//     const Greeter = await ethers.getContractFactory("Greeter");
-//     const greeter = await Greeter.deploy("Hello, world!");
-//     await greeter.deployed();
+describe("ZombieFactory", function () {
+  it("Should return an arbitrary number", async function () {
+    const ZFactory = await ethers.getContractFactory("ZombieFactory");
+    const zFactory = await ZFactory.deploy();
+    await zFactory.deployed();
 
-//     expect(await greeter.greet()).to.equal("Hello, world!");
+    await zFactory.generateRandomZombie("Saad");
+    const zombie = await zFactory.zombies(1);
 
-//     const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
-
-//     // wait until the transaction is mined
-//     await setGreetingTx.wait();
-
-//     expect(await greeter.greet()).to.equal("Hola, mundo!");
-//   });
-// });
+    console.log(zombie)
+    expect(zombie.name).to.be.equal("Saad");
+  });
+});
