@@ -8,7 +8,7 @@ describe("ZombieFactory", function () {
     await zFactory.deployed();
 
     await zFactory.generateRandomZombie("Saad");
-    const zombie = await zFactory.zombies(1);
+    const zombie = await zFactory.zombies(0);
 
     console.log(zombie)
     expect(zombie.name).to.be.equal("Saad");
