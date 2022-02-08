@@ -10,7 +10,6 @@ describe("ZombieFactory", function () {
     await zFactory.generateRandomZombie("Saad");
     const zombie = await zFactory.zombies(0);
 
-    console.log(zombie)
-    expect(zombie.name).to.be.equal("Saad");
+    expect(zombie[0]).to.be.equal("Saad");
   });
 });
