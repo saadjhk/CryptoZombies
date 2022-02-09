@@ -10,10 +10,13 @@ contract ZombieFactory {
     }
 
     Zombie[] public zombies;
+    mapping(uint => address) public zombieToOwner;
+    mapping(address => uint) ownerZombieCount;
 
     function _createZombie(string memory _name) private {
         uint dna = _generateZombieDna(_name);
         zombies.push(Zombie(_name, dna));
+        zombieToOwner[dna] = msg.sender;
     }
 
     function _generateZombieDna(string memory _name) private view returns (uint) {
@@ -22,6 +25,8 @@ contract ZombieFactory {
     }
 
     function generateRandomZombie(string memory _name) public {
+        // only create one zombie per user?
+        require(ownerZombieCount[msg.sender] == 0);
         _createZombie(_name);
     }
 }
