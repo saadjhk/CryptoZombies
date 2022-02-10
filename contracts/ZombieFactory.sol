@@ -17,6 +17,7 @@ contract ZombieFactory {
         uint dna = _generateZombieDna(_name);
         zombies.push(Zombie(_name, dna));
         zombieToOwner[dna] = msg.sender;
+        ownerZombieCount[msg.sender]++;
     }
 
     function _generateZombieDna(string memory _name) private view returns (uint) {
