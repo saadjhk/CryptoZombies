@@ -13,11 +13,14 @@ contract ZombieFactory {
     mapping(uint => address) public zombieToOwner;
     mapping(address => uint) ownerZombieCount;
 
+    event NewZombie(uint zombieId, string name, uint dna);
+
     function _createZombie(string memory _name) private {
         uint dna = _generateZombieDna(_name);
-        zombies.push(Zombie(_name, dna));
+        uint id = zombies.push(Zombie(_name, dna));
         zombieToOwner[dna] = msg.sender;
         ownerZombieCount[msg.sender]++;
+        emit NewZombie(id, _name, dna);
     }
 
     function _generateZombieDna(string memory _name) private view returns (uint) {
