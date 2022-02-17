@@ -1,6 +1,8 @@
 pragma solidity >=0.5.0 <0.6.0;
 
-import "./ZombieFactory.sol";
+import "./zombiefactory.sol";
+
+// Create KittyInterface here
 
 contract ZombieFeeding is ZombieFactory {
 
@@ -9,7 +11,7 @@ contract ZombieFeeding is ZombieFactory {
     Zombie storage myZombie = zombies[_zombieId];
     _targetDna = _targetDna % dnaModulus;
     uint newDna = (myZombie.dna + _targetDna) / 2;
-    _createZombie("NoName");
+    _createZombie("NoName", newDna);
   }
 
 }
